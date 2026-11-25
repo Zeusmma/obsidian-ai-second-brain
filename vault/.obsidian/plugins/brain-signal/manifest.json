@@ -1,0 +1,9 @@
+{
+  "id": "brain-signal",
+  "name": "Brain Signal",
+  "version": "1.2.0",
+  "minAppVersion": "1.5.0",
+  "description": "Live light signals along graph links whenever a note changes.",
+  "author": "the author",
+  "isDesktopOnly": false
+}

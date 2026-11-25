@@ -1,0 +1,26 @@
+name: test
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Plugin syntax check
+        run: |
+          node --check vault/.obsidian/plugins/neural-system/main.js
+          node --check vault/.obsidian/plugins/brain-signal/main.js
+      - name: JSON validity
+        run: |
+          for f in vault/.obsidian/*.json vault/.obsidian/plugins/*/manifest.json; do
+            python3 -c "import json,sys; json.load(open(sys.argv[1]))" "$f"
+          done
+      - name: Installer syntax and dry install
+        run: |
+          bash -n scripts/install-into-vault.sh
+          mkdir -p "$RUNNER_TEMP/vault/.obsidian"
+          ./scripts/install-into-vault.sh "$RUNNER_TEMP/vault"
+          test -f "$RUNNER_TEMP/vault/.obsidian/plugins/neural-system/main.js"
+          grep -q neural-system "$RUNNER_TEMP/vault/.obsidian/community-plugins.json"

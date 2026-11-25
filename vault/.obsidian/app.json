@@ -1,0 +1,12 @@
+{
+  "readableLineLength": true,
+  "showLineNumber": false,
+  "defaultViewMode": "preview",
+  "alwaysUpdateLinks": true,
+  "newFileLocation": "folder",
+  "newFileFolderPath": "notes",
+  "showInlineTitle": false,
+  "attachmentFolderPath": "assets",
+  "newLinkFormat": "shortest",
+  "useMarkdownLinks": false
+}

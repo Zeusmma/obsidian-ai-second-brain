@@ -1,0 +1,13 @@
+{
+  "accentColor": "#7c3aed",
+  "cssTheme": "",
+  "enabledCssSnippets": [
+    "brain",
+    "cosmos",
+    "readability",
+    "cosmos-ui",
+    "cosmos-note",
+    "cosmos-area"
+  ],
+  "theme": "obsidian"
+}

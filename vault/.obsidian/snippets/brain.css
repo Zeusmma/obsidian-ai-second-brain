@@ -1,0 +1,10 @@
+/* Brain: calm, readable notes. Colours follow the graph groups. */
+.markdown-preview-view h1, .cm-s-obsidian .cm-header-1 { font-weight: 700; letter-spacing: -0.01em; }
+.markdown-preview-view h2 { margin-top: 1.6em; padding-bottom: 0.2em; border-bottom: 1px solid var(--background-modifier-border); }
+.markdown-preview-view table { width: 100%; }
+.markdown-preview-view th { text-align: left; background: var(--background-secondary); }
+.markdown-preview-view td, .markdown-preview-view th { padding: 6px 10px; }
+.callout[data-callout="abstract"] { border-left: 3px solid #d97706; background: var(--background-secondary); }
+.callout[data-callout="tip"] { border-left: 3px solid #7c3aed; }
+.callout .callout-title { font-weight: 600; }
+.internal-embed .markdown-embed-title { display: none; }

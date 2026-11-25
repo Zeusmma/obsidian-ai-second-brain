@@ -1,0 +1,86 @@
+/* Cosmos: dark background, glowing brain */
+
+/* 1. Global dark interface */
+.theme-dark {
+  --background-primary: #05060f;
+  --background-primary-alt: #070918;
+  --background-secondary: #080a1c;
+  --background-secondary-alt: #0b0e24;
+  --background-modifier-border: #1c2148;
+  --text-normal: #dfe3ff;
+  --text-muted: #8a90c0;
+  --interactive-accent: #8b5cf6;
+  --text-accent: #a78bfa;
+  --titlebar-background: #04050c;
+  --titlebar-background-focused: #06071a;
+}
+.theme-dark .workspace-ribbon,
+.theme-dark .workspace-tab-header-container,
+.theme-dark .status-bar { background-color: #04050c; }
+.theme-dark .markdown-preview-view h1,
+.theme-dark .markdown-preview-view h2 { text-shadow: 0 0 18px rgba(139, 92, 246, 0.35); }
+
+/* 2. Graph: colours and light */
+.graph-view.color-fill { color: #a5b4fc; }
+.graph-view.color-fill-focused { color: #fde68a; }
+.graph-view.color-fill-highlight { color: #f0abfc; }
+.graph-view.color-fill-tag { color: #67e8f9; }
+.graph-view.color-fill-attachment { color: #94a3b8; }
+.graph-view.color-circle { color: #fbbf24; }
+.graph-view.color-line { color: rgba(129, 140, 248, 0.28); }
+.graph-view.color-line-highlight { color: #c4b5fd; }
+.graph-view.color-arrow { color: #818cf8; }
+.graph-view.color-text { color: #e0e7ff; }
+
+/* Background: starry cosmos */
+.workspace-leaf-content[data-type="graph"] .view-content,
+.workspace-leaf-content[data-type="localgraph"] .view-content {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 50%, #0d0f2e 0%, #05060f 70%) !important;
+}
+.workspace-leaf-content[data-type="graph"] .view-content canvas,
+.workspace-leaf-content[data-type="localgraph"] .view-content canvas {
+  position: relative;
+  z-index: 2;
+  background: transparent !important;
+  filter: drop-shadow(0 0 3px rgba(165, 180, 252, 0.55));
+}
+.workspace-leaf-content[data-type="graph"] .graph-controls { z-index: 3; }
+
+/* 3. Light on the brain: a breathing glow in the centre */
+.workspace-leaf-content[data-type="graph"] .view-content::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.32) 0%, rgba(99, 102, 241, 0.14) 22%, transparent 48%),
+    radial-gradient(circle at 50% 50%, rgba(251, 191, 36, 0.10) 0%, transparent 30%);
+  animation: brain-breath 5s ease-in-out infinite;
+}
+
+@keyframes brain-breath {
+  0%, 100% { opacity: 0.55; transform: scale(0.94); }
+  50% { opacity: 1; transform: scale(1.06); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .workspace-leaf-content[data-type="graph"] *,
+  .workspace-leaf-content[data-type="graph"]::before,
+  .workspace-leaf-content[data-type="graph"]::after { animation: none !important; }
+}
+
+/* Graph labels: clear, normal size */
+.graph-view.color-text { color: #eef1ff; }
+.workspace-leaf-content[data-type="graph"] { --font-ui-smaller: 13px; }
+
+/* Phone / tablet: pinch zoom stays smooth, no heavy filters or animation */
+body.is-mobile .workspace-leaf-content[data-type="graph"] .view-content canvas,
+body.is-mobile .workspace-leaf-content[data-type="localgraph"] .view-content canvas {
+  filter: none;
+  touch-action: none;
+}
+body.is-mobile .workspace-leaf-content[data-type="graph"] .view-content::before { animation: none; }
+

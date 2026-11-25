@@ -1,0 +1,287 @@
+/* Cosmos UI: app chrome (explorer, tabs, ribbon, palette, status bar, scrollbars, empty state). Tokens are shared: other snippets may use var(--k-*). */
+
+/* 1. Tokens */
+body {
+  --k-bg: #05060f;
+  --k-s1: #080a1c;
+  --k-s2: #0b0e24;
+  --k-s3: #11153a;
+  --k-border: #1c2148;
+  --k-text: #dfe3ff;
+  --k-text-dim: #8a90c0;
+  --k-violet: #8b5cf6;
+  --k-violet-text: #a78bfa;
+  --k-cyan: #22d3ee;
+  --k-pink: #f0abfc;
+  --k-glow-sm: 0 0 8px rgba(139, 92, 246, 0.35);
+  --k-glow-md: 0 0 18px rgba(139, 92, 246, 0.45);
+  --k-hover: rgba(255, 255, 255, 0.06);
+  --k-guide: rgba(255, 255, 255, 0.08);
+  --k-glass: rgba(11, 14, 36, 0.72);
+  --k-radius: 10px;
+  --k-ease: cubic-bezier(.2, .7, .2, 1);
+}
+.theme-light {
+  --k-bg: #f7f6fb;
+  --k-s1: #efedf7;
+  --k-s2: #e6e3f2;
+  --k-s3: #ddd9ee;
+  --k-border: #d3cfe6;
+  --k-text: #1e1b3a;
+  --k-text-dim: #5b5780;
+  --k-violet: #7c3aed;
+  --k-violet-text: #6d28d9;
+  --k-cyan: #0e7490;
+  --k-pink: #be185d;
+  --k-glow-sm: none;
+  --k-glow-md: none;
+  --k-hover: rgba(30, 27, 58, 0.07);
+  --k-guide: rgba(30, 27, 58, 0.10);
+  --k-glass: rgba(247, 246, 251, 0.8);
+}
+
+/* 2. Sidebars one step darker, no hard divider */
+.theme-dark .workspace-split.mod-left-split,
+.theme-dark .workspace-split.mod-right-split { --background-secondary: var(--k-s1); }
+.workspace-split.mod-left-split,
+.workspace-split.mod-right-split { --divider-color: transparent; }
+.workspace-ribbon { --ribbon-background: var(--k-s1); --ribbon-background-collapsed: var(--k-s1); border-color: transparent; }
+
+/* 3. File explorer, bookmarks and other side panes */
+.workspace-leaf-content[data-type="file-explorer"],
+.workspace-leaf-content[data-type="bookmarks"],
+.workspace-leaf-content[data-type="search"],
+.workspace-leaf-content[data-type="tag"],
+.workspace-leaf-content[data-type="outline"],
+.workspace-leaf-content[data-type="backlink"] {
+  --nav-item-size: 13px;
+  --nav-item-radius: 8px;
+  --nav-item-background-hover: var(--k-hover);
+  --nav-item-background-active: rgba(139, 92, 246, 0.18);
+  --nav-item-color-active: var(--k-text);
+  --nav-collapse-icon-color: var(--k-text-dim);
+  --nav-collapse-icon-color-collapsed: var(--k-text-dim);
+  --nav-indentation-guide-color: var(--k-guide);
+  --indentation-guide-color: var(--k-guide);
+}
+.theme-light .workspace-leaf-content[data-type="file-explorer"],
+.theme-light .workspace-leaf-content[data-type="bookmarks"],
+.theme-light .workspace-leaf-content[data-type="search"],
+.theme-light .workspace-leaf-content[data-type="tag"],
+.theme-light .workspace-leaf-content[data-type="outline"],
+.theme-light .workspace-leaf-content[data-type="backlink"] {
+  --nav-item-background-active: rgba(124, 58, 237, 0.14);
+}
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-self,
+.workspace-leaf-content[data-type="bookmarks"] .tree-item-self,
+.workspace-leaf-content[data-type="search"] .tree-item-self,
+.workspace-leaf-content[data-type="tag"] .tree-item-self,
+.workspace-leaf-content[data-type="outline"] .tree-item-self {
+  position: relative;
+  min-height: 28px;
+  align-items: center;
+  border-radius: 8px;
+}
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-self.is-active,
+.workspace-leaf-content[data-type="bookmarks"] .tree-item-self.is-active,
+.workspace-leaf-content[data-type="outline"] .tree-item-self.is-active {
+  background-color: rgba(139, 92, 246, 0.18);
+  color: var(--k-text);
+}
+.theme-light .workspace-leaf-content[data-type="file-explorer"] .tree-item-self.is-active,
+.theme-light .workspace-leaf-content[data-type="bookmarks"] .tree-item-self.is-active,
+.theme-light .workspace-leaf-content[data-type="outline"] .tree-item-self.is-active {
+  background-color: rgba(124, 58, 237, 0.14);
+}
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-self.is-active::after,
+.workspace-leaf-content[data-type="bookmarks"] .tree-item-self.is-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--k-violet);
+  box-shadow: var(--k-glow-sm);
+}
+.workspace-leaf-content[data-type="file-explorer"] .collapse-icon,
+.workspace-leaf-content[data-type="bookmarks"] .collapse-icon { opacity: 0.55; }
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-self:hover .collapse-icon,
+.workspace-leaf-content[data-type="bookmarks"] .tree-item-self:hover .collapse-icon { opacity: 1; }
+.workspace-leaf-content[data-type="file-explorer"] .tree-item-children,
+.workspace-leaf-content[data-type="bookmarks"] .tree-item-children {
+  border-inline-start: 1px solid var(--k-guide);
+}
+
+/* 4. Tabs */
+.workspace-tab-header-container { --tab-container-background: var(--k-s1); }
+.workspace-tab-header { --tab-radius-active: 8px; }
+.mod-root .workspace-tab-header .workspace-tab-header-inner { border-radius: 8px; }
+.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-title,
+.mod-root .workspace-tab-header:not(.is-active) .workspace-tab-header-inner-icon { opacity: 0.8; }
+.mod-root .workspace-tab-header.is-active {
+  background-color: var(--k-s3);
+  border-radius: 8px;
+  box-shadow: inset 0 1px 0 var(--k-violet), 0 -2px 10px -4px var(--k-violet);
+}
+.theme-light .mod-root .workspace-tab-header.is-active { box-shadow: inset 0 2px 0 var(--k-violet); }
+.mod-root .workspace-tab-header.is-active .workspace-tab-header-inner-title { color: var(--k-text); }
+
+/* 5. Ribbon */
+.workspace-ribbon .side-dock-ribbon-action,
+.workspace-ribbon .clickable-icon { --icon-color: var(--k-text-dim); --icon-color-hover: var(--k-text); border-radius: 8px; }
+.workspace-ribbon .side-dock-ribbon-action.is-active,
+.workspace-ribbon .clickable-icon.is-active { --icon-color: var(--k-violet-text); --icon-color-hover: var(--k-violet-text); color: var(--k-violet-text); }
+
+/* 6. Focus ring */
+button:focus-visible,
+.clickable-icon:focus-visible,
+.workspace-tab-header:focus-visible,
+.tree-item-self:focus-visible,
+.suggestion-item:focus-visible,
+.empty-state-action:focus-visible,
+.vertical-tab-nav-item:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+a:focus-visible,
+.internal-link:focus-visible,
+.external-link:focus-visible {
+  outline: 2px solid var(--k-cyan);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* 7. Command palette, quick switcher, modals */
+.prompt,
+.modal {
+  --prompt-background: var(--k-s2);
+  --prompt-border-color: var(--k-border);
+  --modal-background: var(--k-s2);
+  --modal-border-color: var(--k-border);
+  --modal-radius: 14px;
+  border-radius: 14px;
+}
+@supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+  body:not(.is-mobile) .prompt,
+  body:not(.is-mobile) .modal {
+    --prompt-background: var(--k-glass);
+    --modal-background: var(--k-glass);
+    -webkit-backdrop-filter: blur(18px) saturate(1.2);
+    backdrop-filter: blur(18px) saturate(1.2);
+  }
+}
+.prompt .suggestion-item { position: relative; border-radius: 8px; }
+.prompt .suggestion-item.is-selected { background-color: rgba(139, 92, 246, 0.18); }
+.theme-light .prompt .suggestion-item.is-selected { background-color: rgba(124, 58, 237, 0.14); }
+.prompt .suggestion-item.is-selected::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 5px;
+  bottom: 5px;
+  width: 2px;
+  border-radius: 2px;
+  background: var(--k-violet);
+  box-shadow: var(--k-glow-sm);
+}
+.suggestion-hotkey,
+.setting-hotkey,
+.prompt-instruction-command {
+  font-family: var(--font-monospace);
+  font-size: 11px;
+  color: var(--k-text-dim);
+  background: var(--k-s3);
+  border: 1px solid var(--k-border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 1px 6px;
+}
+
+/* 8. Status bar: floating pill */
+body:not(.is-mobile) .status-bar {
+  --status-bar-background: var(--k-s2);
+  --status-bar-border-color: var(--k-border);
+  --status-bar-text-color: var(--k-text-dim);
+  --status-bar-radius: 999px;
+  --status-bar-border-width: 1px;
+  background-color: var(--k-s2);
+  border: 1px solid var(--k-border);
+  border-radius: 999px;
+  right: 12px;
+  bottom: 12px;
+  opacity: 0.8;
+}
+body:not(.is-mobile) .status-bar:hover { opacity: 1; }
+
+/* 9. Scrollbars */
+body:not(.is-mobile) {
+  --scrollbar-bg: transparent;
+  --scrollbar-thumb-bg: rgba(139, 92, 246, 0.3);
+  --scrollbar-active-thumb-bg: rgba(139, 92, 246, 0.6);
+}
+body:not(.is-mobile) ::-webkit-scrollbar { width: 8px; height: 8px; background: transparent; }
+body:not(.is-mobile) ::-webkit-scrollbar-track { background: transparent; }
+body:not(.is-mobile) ::-webkit-scrollbar-thumb {
+  background-color: rgba(139, 92, 246, 0.3);
+  border-radius: 8px;
+  border: 0;
+  background-clip: padding-box;
+}
+body:not(.is-mobile) ::-webkit-scrollbar-thumb:hover { background-color: rgba(139, 92, 246, 0.6); }
+
+/* 10. Empty new-tab state */
+.empty-state {
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(139, 92, 246, 0.12), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(34, 211, 238, 0.07), transparent 55%),
+    radial-gradient(ellipse at 60% 20%, rgba(240, 171, 252, 0.06), transparent 50%);
+}
+.theme-light .empty-state {
+  background:
+    radial-gradient(ellipse at 25% 30%, rgba(124, 58, 237, 0.08), transparent 55%),
+    radial-gradient(ellipse at 75% 70%, rgba(14, 116, 144, 0.05), transparent 55%);
+}
+.empty-state-container { align-items: center; text-align: center; }
+.empty-state-action-list { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.empty-state-action {
+  min-width: 200px;
+  text-align: center;
+  padding: 8px 18px;
+  border: 1px solid var(--k-border);
+  border-radius: 999px;
+  background: var(--k-s2);
+  color: var(--k-violet-text);
+}
+.empty-state-action:hover { border-color: var(--k-violet); box-shadow: var(--k-glow-sm); }
+
+/* 11. Motion: only when allowed */
+@media (prefers-reduced-motion: no-preference) {
+  .tree-item-self,
+  .workspace-tab-header,
+  .workspace-tab-header-inner,
+  .clickable-icon,
+  .side-dock-ribbon-action,
+  .empty-state-action,
+  .suggestion-item,
+  .status-bar,
+  .collapse-icon {
+    transition: background-color 140ms var(--k-ease), color 140ms var(--k-ease), opacity 140ms var(--k-ease), border-color 140ms var(--k-ease), box-shadow 140ms var(--k-ease);
+  }
+}
+
+/* 12. phone / tablet: no hover-only info, big targets, no blur */
+body.is-mobile .prompt,
+body.is-mobile .modal {
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  --prompt-background: var(--k-s2);
+  --modal-background: var(--k-s2);
+}
+body.is-mobile .tree-item-self,
+body.is-mobile .suggestion-item,
+body.is-mobile .empty-state-action,
+body.is-mobile .vertical-tab-nav-item { min-height: 44px; }
+body.is-mobile .clickable-icon { min-width: 44px; min-height: 44px; }
+body.is-mobile .collapse-icon { opacity: 1; }

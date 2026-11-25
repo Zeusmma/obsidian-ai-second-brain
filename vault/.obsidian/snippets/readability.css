@@ -1,0 +1,52 @@
+/* Readability: spacing, heading sizes, tables, callout colours, folder stripes. rgba works for light and dark. */
+
+/* Line spacing: reading and editing */
+.markdown-preview-view,
+.markdown-rendered,
+.markdown-source-view.mod-cm6 .cm-content,
+.markdown-source-view.mod-cm6 .cm-line {
+  line-height: 1.65;
+}
+
+/* Heading sizes */
+.markdown-preview-view h1, .markdown-rendered h1, .markdown-source-view.mod-cm6 .cm-header-1 { font-size: 2em; }
+.markdown-preview-view h2, .markdown-rendered h2, .markdown-source-view.mod-cm6 .cm-header-2 { font-size: 1.6em; }
+.markdown-preview-view h3, .markdown-rendered h3, .markdown-source-view.mod-cm6 .cm-header-3 { font-size: 1.3em; }
+.markdown-preview-view h4, .markdown-rendered h4, .markdown-source-view.mod-cm6 .cm-header-4 { font-size: 1.1em; }
+
+/* Full-width tables */
+.markdown-preview-view table,
+.markdown-rendered table {
+  width: 100%;
+}
+
+/* Callouts: decision (green), rule (blue), question (orange), source (grey) */
+.callout[data-callout="decision"] {
+  --callout-color: 61, 220, 132;
+  --callout-icon: lucide-check-circle;
+}
+.callout[data-callout="rule"] {
+  --callout-color: 79, 157, 255;
+  --callout-icon: lucide-shield;
+}
+.callout[data-callout="question"] {
+  --callout-color: 255, 184, 79;
+  --callout-icon: lucide-help-circle;
+}
+.callout[data-callout="source"] {
+  --callout-color: 138, 138, 138;
+  --callout-icon: lucide-link;
+}
+
+/* Folder stripes: 3px left edge */
+.nav-folder-title[data-path^="knowledge/automation"],
+.nav-folder-title[data-path^="projects/demo-app"] { border-left: 3px solid rgba(255, 79, 163, 0.9); }
+.nav-folder-title[data-path^="knowledge/python"],
+.nav-folder-title[data-path^="knowledge/languages"] { border-left: 3px solid rgba(79, 157, 255, 0.9); }
+.nav-folder-title[data-path^="knowledge/ai-agents"] { border-left: 3px solid rgba(255, 184, 79, 0.9); }
+.nav-folder-title[data-path^="knowledge/productivity"] { border-left: 3px solid rgba(61, 220, 132, 0.9); }
+.nav-folder-title[data-path^="🔮 Companion"] { border-left: 3px solid rgba(180, 124, 255, 0.9); }
+.nav-folder-title[data-path^="knowledge/travel"] { border-left: 3px solid rgba(255, 107, 79, 0.9); }
+.nav-folder-title[data-path$="receipts"] { border-left: 3px solid rgba(138, 138, 138, 0.9); }
+.nav-folder-title[data-path$="daily"] { border-left: 3px solid rgba(46, 196, 182, 0.9); }
+.nav-folder-title[data-path^="notes"] { border-left: 3px solid rgba(245, 213, 71, 0.9); }

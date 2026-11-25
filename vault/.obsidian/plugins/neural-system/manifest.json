@@ -1,0 +1,9 @@
+{
+  "id": "neural-system",
+  "name": "Neural System",
+  "version": "1.0.0",
+  "minAppVersion": "1.5.0",
+  "description": "The vault drawn as a human nervous system: brain = knowledge lobes, brainstem = Companion notes, spine = notes in time order, arms = skills and agents, legs = notes. Links glow as nerve paths, colours come from the graph colour groups.",
+  "author": "the author",
+  "isDesktopOnly": false
+}

@@ -1,0 +1,79 @@
+{
+  "collapse-filter": false,
+  "search": "-path:daily -file:index -file:AGENTS -file:CLAUDE -file:Last-Session",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": true,
+  "showOrphans": true,
+  "collapse-color-groups": true,
+  "colorGroups": [
+    {
+      "query": "file:\"\ud83e\udde0 Brain\"",
+      "color": {
+        "a": 1,
+        "rgb": 16020150
+      }
+    },
+    {
+      "query": "path:\"\ud83e\udded Maps\"",
+      "color": {
+        "a": 1,
+        "rgb": 16498468
+      }
+    },
+    {
+      "query": "path:\"\ud83d\udd2e Companion\"",
+      "color": {
+        "a": 1,
+        "rgb": 10980346
+      }
+    },
+    {
+      "query": "path:\"\ud83d\udcdc Operations\"",
+      "color": {
+        "a": 1,
+        "rgb": 8490232
+      }
+    },
+    {
+      "query": "path:notes",
+      "color": {
+        "a": 1,
+        "rgb": 3462041
+      }
+    },
+    {
+      "query": "path:knowledge",
+      "color": {
+        "a": 1,
+        "rgb": 6333946
+      }
+    },
+    {
+      "query": "path:\"\ud83e\udde9 Skills\"",
+      "color": {
+        "a": 1,
+        "rgb": 2282478
+      }
+    },
+    {
+      "query": "path:\"\ud83e\udd16 Agents\"",
+      "color": {
+        "a": 1,
+        "rgb": 16478597
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": false,
+  "textFadeMultiplier": 0,
+  "nodeSizeMultiplier": 1.3,
+  "lineSizeMultiplier": 0.5,
+  "collapse-forces": false,
+  "centerStrength": 0.45,
+  "repelStrength": 14,
+  "linkStrength": 0.8,
+  "linkDistance": 220,
+  "close": true,
+  "scale": 0.42
+}

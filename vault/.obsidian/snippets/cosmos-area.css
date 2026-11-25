@@ -1,0 +1,174 @@
+/* Cosmos area: home page, area colours, Bases, Canvas, Graph */
+
+/* Palette: dark + light */
+body {
+  --ks-v: var(--k-violet, #8b5cf6);
+  --ks-c: var(--k-cyan, #22d3ee);
+  --ks-p: var(--k-pink, #f472b6);
+  --ks-s1: var(--k-s1, #080a1c);
+  --ks-s2: var(--k-s2, #0b0e24);
+  --ks-r: var(--k-radius, 10px);
+  --ks-bg: #05060f;
+}
+.theme-light {
+  --ks-s1: #f4f3ff;
+  --ks-s2: #ece9ff;
+  --ks-bg: #ffffff;
+  --ks-v: #6d28d9;
+  --ks-c: #0e7490;
+  --ks-p: #be185d;
+}
+
+/* 1. Brain home page */
+.brain-home { --file-line-width: 1000px; position: relative; }
+.brain-home .inline-title,
+.brain-home .metadata-container { display: none; }
+.brain-home .markdown-preview-sizer,
+.brain-home .cm-sizer { position: relative; isolation: isolate; }
+.brain-home .markdown-preview-sizer::before,
+.brain-home .cm-sizer::before {
+  content: "";
+  position: absolute;
+  left: -2rem; right: -2rem; top: 0; height: 260px;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 55% 90% at 25% 20%, rgba(139, 92, 246, 0.38), transparent 70%),
+    radial-gradient(ellipse 50% 80% at 78% 35%, rgba(34, 211, 238, 0.26), transparent 70%),
+    var(--ks-bg);
+  border-radius: 0 0 var(--ks-r) var(--ks-r);
+}
+.theme-light.brain-home .markdown-preview-sizer::before,
+.theme-light .brain-home .markdown-preview-sizer::before,
+.theme-light .brain-home .cm-sizer::before { opacity: 0.35; }
+.brain-home h1 {
+  font-size: 3rem;
+  color: var(--ks-v);
+  text-shadow: 0 0 28px rgba(139, 92, 246, 0.6), 0 0 6px rgba(34, 211, 238, 0.35);
+}
+.theme-dark .brain-home h1 { color: #c4b5fd; }
+.theme-light .brain-home h1 { text-shadow: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .theme-dark .brain-home h1 { animation: ks-pulse 6s ease-in-out infinite; }
+  @keyframes ks-pulse {
+    0%, 100% { text-shadow: 0 0 20px rgba(139, 92, 246, 0.45), 0 0 4px rgba(34, 211, 238, 0.25); }
+    50% { text-shadow: 0 0 38px rgba(139, 92, 246, 0.85), 0 0 10px rgba(34, 211, 238, 0.5); }
+  }
+}
+
+/* 2. Area colours */
+.area-work { --k-accent: #ff4fa3; }
+.area-study { --k-accent: #4f9dff; }
+.area-hobby { --k-accent: #ffb84f; }
+.area-life { --k-accent: #3ddc84; }
+/* Light: darker tone, AA contrast */
+.theme-light .area-work { --k-accent: #b0145f; }
+.theme-light .area-study { --k-accent: #0b5cc2; }
+.theme-light .area-hobby { --k-accent: #8a5500; }
+.theme-light .area-life { --k-accent: #0d7a3e; }
+
+:is(.area-work, .area-study, .area-hobby, .area-life) {
+  --link-color: var(--k-accent);
+  --link-color-hover: var(--k-accent);
+  --hr-color: var(--k-accent);
+  --h1-color: var(--k-accent);
+  --h2-color: var(--k-accent);
+  --h3-color: var(--k-accent);
+  --callout-color: 128, 128, 128;
+}
+:is(.area-work, .area-study, .area-hobby, .area-life) .callout {
+  border-left: 3px solid var(--k-accent);
+}
+:is(.area-work, .area-study, .area-hobby, .area-life) .markdown-preview-sizer,
+:is(.area-work, .area-study, .area-hobby, .area-life) .cm-sizer { position: relative; }
+:is(.area-work, .area-study, .area-hobby, .area-life) .markdown-preview-sizer::before,
+:is(.area-work, .area-study, .area-hobby, .area-life) .cm-sizer::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0; height: 140px;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: var(--ks-r);
+  background: linear-gradient(180deg, color-mix(in srgb, var(--k-accent) 32%, transparent), transparent);
+}
+/* keep the text above the banner, not hidden */
+:is(.area-work, .area-study, .area-hobby, .area-life) .inline-title { padding-top: 0.5rem; }
+
+/* 3. Bases cards */
+.bases-cards-item {
+  border-radius: 14px;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: none;
+  background: var(--ks-s1);
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .bases-cards-item { transition: transform 0.18s ease, box-shadow 0.18s ease; }
+  .bases-cards-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 22px rgba(139, 92, 246, 0.35);
+  }
+}
+/* devices without hover: no hover, everything visible */
+.bases-cards-cover { background: linear-gradient(135deg, rgba(139, 92, 246, 0.35), rgba(34, 211, 238, 0.2)), var(--ks-s2); }
+
+/* 4. Bases table */
+.bases-table-container {
+  background: var(--ks-s1);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+  border-radius: var(--ks-r);
+}
+.bases-table-container .bases-table-header { background: var(--ks-s2); }
+
+/* 5. Canvas */
+.canvas-wrapper {
+  --canvas-background: var(--ks-bg);
+  --canvas-dot-pattern: rgba(139, 92, 246, 0.18);
+  /* r, g, b: edge and folder colours */
+  --canvas-color-1: 244, 114, 182;
+  --canvas-color-2: 251, 146, 60;
+  --canvas-color-3: 250, 204, 21;
+  --canvas-color-4: 61, 220, 132;
+  --canvas-color-5: 34, 211, 238;
+  --canvas-color-6: 139, 92, 246;
+}
+.theme-light .canvas-wrapper {
+  --canvas-dot-pattern: rgba(109, 40, 217, 0.2);
+  --canvas-color-1: 190, 24, 93;
+  --canvas-color-2: 194, 65, 12;
+  --canvas-color-3: 161, 98, 7;
+  --canvas-color-4: 21, 128, 61;
+  --canvas-color-5: 14, 116, 144;
+  --canvas-color-6: 109, 40, 217;
+}
+.theme-dark .canvas-wrapper .canvas-background {
+  background-image:
+    radial-gradient(1px 1px at 12% 18%, rgba(255,255,255,0.55), transparent),
+    radial-gradient(1px 1px at 37% 72%, rgba(165,180,252,0.5), transparent),
+    radial-gradient(1.5px 1.5px at 64% 31%, rgba(255,255,255,0.45), transparent),
+    radial-gradient(1px 1px at 83% 84%, rgba(103,232,249,0.5), transparent),
+    radial-gradient(1px 1px at 91% 12%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 52% 55%, rgba(244,114,182,0.4), transparent);
+  background-size: 420px 420px;
+}
+.canvas-background circle { opacity: 0.55; }
+.canvas-node-container {
+  border-radius: 12px;
+  border-width: 1px;
+}
+.theme-dark .canvas-node-container { background: var(--ks-s1); }
+.canvas-wrapper path.canvas-display-path { filter: drop-shadow(0 0 3px rgba(var(--canvas-color, 139, 92, 246), 0.7)); }
+
+/* 6. Graph (without touching graph.json) */
+.theme-dark .graph-view.color-fill { color: #a78bfa; }
+.theme-dark .graph-view.color-fill-tag { color: #22d3ee; }
+.theme-dark .graph-view.color-fill-attachment { color: #f472b6; }
+.theme-dark .graph-view.color-fill-highlight { color: #f9a8d4; }
+.theme-dark .graph-view.color-line { color: rgba(139, 92, 246, 0.3); }
+.theme-dark .graph-view.color-line-highlight { color: #22d3ee; }
+.theme-light .graph-view.color-fill { color: #6d28d9; }
+.theme-light .graph-view.color-fill-tag { color: #0e7490; }
+.theme-light .graph-view.color-fill-attachment { color: #be185d; }
+.theme-light .graph-view.color-fill-highlight { color: #9d174d; }
+.theme-light .graph-view.color-line { color: rgba(109, 40, 217, 0.35); }
+.theme-light .graph-view.color-line-highlight { color: #0e7490; }
